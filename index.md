@@ -13,13 +13,13 @@ You can integrate with below Apps
 
 ### Single Sign-on (SSO)
 
-# Integrating Tata Digital Sign-In to Web App
+#### Integrating Tata Digital Sign-In to Web App
 
 Tata Digital Sign-In manages the OAuth 2.0 flow and token lifecycle, simplifying
 your integration with Tata Digital APIs. This document describes how to complete a
 basic Tata Digital Sign-In integration.
 
-## 1. 1 Before you begin
+##### 1. 1 Before you begin
 
 Before you can integrate Tata Digital Sign-In into your website, you must create a
 client ID, which you need to call the sign-in API. Most of the client IDs for brands
@@ -34,7 +34,7 @@ After configuration is complete, take note of the client ID that was created. Yo
 need the client ID to complete the next steps. (A client secret is also created, but
 you need it only for server-side operations.)
 
-## 1.2 Load the Tata Digital Platform Library
+##### 1.2 Load the Tata Digital Platform Library
 
 You must include the Tata Digital Platform Library on your web pages that integrate
 Tata Digital Sign-In.
@@ -42,7 +42,7 @@ Tata Digital Sign-In.
 <script src="https://dev-account.tatadigital.com/tdl-sso.js" async
 defer></script>
 
-## 1.3 Specify app's client ID
+##### 1.3 Specify app's client ID
 
 Specify the client ID you created for your app in the Tata Digital Admin with
 the tdl-sso-client_id meta element in head of the html page.
@@ -50,7 +50,7 @@ the tdl-sso-client_id meta element in head of the html page.
 <meta name="tdl-sso-client_id" content="YOUR-CLIENT-ID" />
 
 
-## 1.4 Add a Tata Digital Sign-In button:
+##### 1.4 Add a Tata Digital Sign-In button:
 
 The easiest way to add a Tata Digital Sign-In button to your site is to use an
 automatically rendered sign-in button. With only a few lines of code, you can add a
@@ -59,9 +59,9 @@ colors for the sign-in state of the user and the scopes you request. To create a
 Digital Sign-In button that uses the default settings, add div element with the
 class tata-signin2 to sign-in page:
 
-<div class="tata-signin2" data-onsuccess="onSignIn"></div>
+'''<div class="tata-signin2" data-onsuccess="onSignIn"></div>'''
 
-## 2.1 When does not session exists:
+##### 2.1 When does not session exists:
 
 On clicking this button user will be redirected to:
 
@@ -92,7 +92,7 @@ account.tatadigital.com. If you want session cookie brand website domain you may
 create and manage that.
 
 
-## 2.2 Get Auth Tokens: When session exists (Auto-login)
+##### 2.2 Get Auth Tokens: When session exists (Auto-login)
 
 After you have signed in a user with Tata Digital using the default scopes, you can
 access the user's Tata Digital ID, name, profile URL, and email address, phone no.
@@ -137,7 +137,7 @@ The sample response is as follows:
 }
 
 
-## 3. 1 Sign out a user
+##### 3. 1 Sign out a user
 
 You can enable users to sign out of your app without signing out of Tata Digital by
 adding a sign-out button or link to your site. To create a sign-out link, attach a
@@ -152,7 +152,7 @@ tdlSsoAuth.signOut(accessToken).then(() => console.log('User signed
 out.')); }
 </script>
 
-## 4.1 Authenticate with a backend server
+##### 4.1 Authenticate with a backend server
 
 If you use Tata Digital Sign-In with an app or site that communicates with a backend
 server, you might need to identify the currently signed-in user on the server. To do
@@ -161,7 +161,7 @@ server using HTTPS. Then, on the server, verify the integrity of the access toke
 use the user information contained in the token to establish a session or create a
 new account.
 
-### Send the access token to Tata Digital server as Bearer Token:
+##### Send the access token to Tata Digital server as Bearer Token:
 
 After a user successfully signs in, get the user's access token.
 
@@ -177,7 +177,7 @@ console.log('Success Response: ' + xhr.responseText);
 xhr.send();
 
 
-## 4 .2 Verify the integrity of the access token:
+##### 4 .2 Verify the integrity of the access token:
 
 After you receive the access token by HTTPS POST, you must verify the integrity of
 the token. To verify that the token is valid, ensure that you make the following API
@@ -199,7 +199,7 @@ contains the JSON-formatted token claims. Here's an example response:
 }
 // Here ttl is the expiry time of access token in seconds.
 
-## 4.3 Getting new access token when old one expires:
+##### 4.3 Getting new access token when old one expires:
 
 Access token is short lived, but for longer uninterrupted session for user you can get
 a new access token by making the following API call:
