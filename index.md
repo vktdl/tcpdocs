@@ -82,8 +82,10 @@ Here login or enrolment journey will take place where client login methods will 
 supported. After successful login the user be redirected back to brand website with
 authCode and codeVerifier in query parameters as follows:
 
+```
 https://www.brand-website.com/?authCode=<authCode>
 &existingUser=1&codeVerifier=<codeVerifier>
+```
 
 The authCode and and codeVerifier should be used immediately to get
 accessToken, refreshToken and idToken as explained in the following sections.
@@ -103,12 +105,15 @@ access the user's Tata Digital ID, name, profile URL, and email address, phone n
 
 To retrieve profile information for a user, use the getTdlSsoToken() method.
 
+```
 function getTdlSsoToken ({ authCode, codeVerifier }) {
 console.log(authCode, codeVerifier);
 }
+```
 
 Then, send the token to SSO server with an HTTPS POST request to get idToken:
 
+```
 async function getTdlSsoToken({ authCode, codeVerifier }) {
 console.log('Logging tdl tokens', authCode, codeVerifier);
 if(!authCode) return;
@@ -125,8 +130,12 @@ client_secret: "c2632ea1-27be-44ac-a6c8-5f6335048003"
 }
 }).then(async res => console.log(await res.json()));
 }
+```
+
 
 The sample response is as follows:
+
+```
 {
 "success": "Token Generated",
 "accessToken": "c95bd15b-ddc5-4c58- 9171 - f0b934ba74b7",
@@ -139,7 +148,7 @@ The sample response is as follows:
 "phone": 8828291901
 }
 }
-
+```
 
 ##### 3. 1 Sign out a user
 
@@ -148,6 +157,7 @@ adding a sign-out button or link to your site. To create a sign-out link, attach
 
 function that calls the tdlSsoAuth.signOut() method to the link's onclick event.
 
+```
 <a href="#" onclick="signOut();">Sign out</a>
 <script>
 function signOut() {
@@ -155,6 +165,7 @@ const accessToken = localStorage.getItem("access_token");
 tdlSsoAuth.signOut(accessToken).then(() => console.log('User signed
 out.')); }
 </script>
+```
 
 ##### 4.1 Authenticate with a backend server
 
@@ -172,6 +183,7 @@ After a user successfully signs in, get the user's access token.
 Then, send the access token to the server with all subsequent requests for user
 validation:
 
+```
 var xhr = new XMLHttpRequest();
 xhr.open('POST', 'https://dapi.tatadigital.com/api/v1/example');
 xhr.setRequestHeader('Authorization', 'Bearer <access_token>');
@@ -179,7 +191,7 @@ xhr.onload = function() {
 console.log('Success Response: ' + xhr.responseText);
 };
 xhr.send();
-
+```
 
 ##### 4 .2 Verify the integrity of the access token:
 
@@ -187,20 +199,24 @@ After you receive the access token by HTTPS POST, you must verify the integrity 
 the token. To verify that the token is valid, ensure that you make the following API
 call:
 
+```
 Headers:
 client_id: ‘CLIENT-ID’
 
 Request: GET
 https://dapi.tatadigital.com/api/v1/sso/validate-token/{access_token}
+```
 
 If the token is properly signed, you will get a HTTP 200 response, where the body
 contains the JSON-formatted token claims. Here's an example response:
 
+```
 {
 "success": "Valid access token",
 "customerHash": "5f35fd67c673699b98ec50327ebde2ed",
 "ttl": "86373"
 }
+```
 // Here ttl is the expiry time of access token in seconds.
 
 ##### 4.3 Getting new access token when old one expires:
@@ -208,6 +224,7 @@ contains the JSON-formatted token claims. Here's an example response:
 Access token is short lived, but for longer uninterrupted session for user you can get
 a new access token by making the following API call:
 
+```
 Headers:
 client_id: ‘CLIENT-ID’
 client_secret: ‘CLIENT-SECRET’
@@ -226,7 +243,7 @@ body contains the JSON-formatted new access token. Here's an example response:
 "expires_in": 86399
 }
 // Here ttl is the expiry time of refresh token in seconds.
-
+```
 
 
 
