@@ -39,16 +39,19 @@ you need it only for server-side operations.)
 You must include the Tata Digital Platform Library on your web pages that integrate
 Tata Digital Sign-In.
 
+```markdown
 <script src="https://dev-account.tatadigital.com/tdl-sso.js" async
 defer></script>
+```
 
 ##### 1.3 Specify app's client ID
 
 Specify the client ID you created for your app in the Tata Digital Admin with
 the tdl-sso-client_id meta element in head of the html page.
 
+```markdown
 <meta name="tdl-sso-client_id" content="YOUR-CLIENT-ID" />
-
+```
 
 ##### 1.4 Add a Tata Digital Sign-In button:
 
