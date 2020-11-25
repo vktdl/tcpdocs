@@ -1,12 +1,20 @@
 ## Welcome to Tata Digital
 
-You can use the [editor on GitHub](https://github.com/vktdl/tcpdocs/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+This guide is a quick start to integreta the brand with TCP across systems.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+You can integrate with below Apps
 
-### Markdown
+- Single Sign-on (SSO)
+- Golden Recrod (GR)
+- Loylaty
+- Offern Engine
+- Online Payment Experiance Layer (OPEL)
+- Tata Pay (TPM)
+
+### Getting Started
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+
 
 ```markdown
 Syntax highlighted code block
