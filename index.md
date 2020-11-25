@@ -61,15 +61,16 @@ button that automatically configures itself to have the appropriate text, logo, 
 colors for the sign-in state of the user and the scopes you request. To create a Tata
 Digital Sign-In button that uses the default settings, add div element with the
 class tata-signin2 to sign-in page:
-
-'''<div class="tata-signin2" data-onsuccess="onSignIn"></div>'''
+https://vktdl.github.io/tcpdocs/
+<div class="tata-signin2" data-onsuccess="onSignIn"></div>'''
 
 ##### 2.1 When does not session exists:
 
 On clicking this button user will be redirected to:
-
+```
 https://dev-account.tatadigital.com/?clientId=<CLIENT-
 ID>&redirectURL=<current_window_location>
+```
 
 Custom button can also be created for this and you can do redirection manually
 whenever you have a requirement for login. In this case you and give any callback
