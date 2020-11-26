@@ -2,6 +2,8 @@
 
 This guide is a quick start to integreta the brand with TCP across systems.
 
+First reqeust for the access of the developer portal.
+
 You can integrate with below Apps
 
 - Single Sign-on (SSO)
@@ -263,12 +265,12 @@ You can enroll your from your Web and Mobile app using the SSO widget. You could
 
 We also support enrollment journey from other offline channels like POS (Point of Sale), PMS (Property Management Systems), etc.
 
-Steps to enroll the customer through offline channels:
+Steps to enroll new customer through offline channels:
 
 ##### 1.2.1  Step 1 : Fetch Customer using Mobile Number
 
 First call Fetch Customer API to check if customer is alreay a member or not
-
+[Fetch Customer on developer portal](https://dvdevportal.tatadigital.com/api-details#api=croma-pos&operation=fetchcustomerpos)
 
 ```
 Headers:
@@ -286,144 +288,7 @@ Body
 
 ```
 
-If customer found then you'll get the his/her profile details
-```
-
-Resposne
-{
-    "id": "5db705f7-dd2d-4430-9f61-b43718486f98",
-    "tcpNumber": "6000004222577446",
-    "customerHash": "32d734784347df2bac42471628bb8816",
-    "programId": "101",
-    "nameDetails": {
-        "salutation": "mr123884",
-        "firstName": "Rick",
-        "middleName": "Anderson",
-        "lastName": "Roy"
-    },
-    "dob": "1993-12-23",
-    "primaryMobile": {
-        "isdCode": "91",
-        "phoneNumber": "6655998800"
-    },
-    "primaryEmailId": "anjan@hotmail.com",
-    "gender": "Male",
-    "activationFlag": "Inactive",
-    "maritalStatus": "Married",
-    "maritalInfo": {
-        "anniversaryDate": "1993-12-23",
-        "spouseDetails": {
-            "spouseName": "some full name",
-            "spouseDOB": "1993-12-23"
-        }
-    },
-    "loyalCustomer": "Y",
-    "conflict": "false",
-    "tataFlag": null,
-    "batchEnrollment": "false",
-    "mothersMaidenName": "abc",
-    "alternateNumbers": [{
-        "type": "Office",
-        "label": "Home address",
-        "isdCode": "+91",
-        "areaCode": "022",
-        "phoneNumber": "5749494058"
-    }],
-    "alternateEmails": [{
-        "type": "Personal",
-        "emailId": "dcgnfk@dfjkfh.com"
-    }],
-    "companyInfo": {
-        "companyName": "TDL",
-        "employeeNumber": "dfg41394",
-        "occupation": "service",
-        "designation": "dfjhf"
-    },
-    "language": {
-        "primary": "English",
-        "secondary": "Hindi"
-    },
-    "identificationDetail": {
-        "passportDetail": {
-            "passport": "vavchcav",
-            "passportIDIssueDate": "acbskbcjckaa",
-            "passportIDExpiryDate": "1993-12-23",
-            "passportIDIssuePlace": "Kolkata"
-        },
-        "licenseDetail": {
-            "licenseNumber": "9878465313132",
-            "licenseIDIssuePlace": "free Test",
-            "licnseIDIssueDate": "1993-12-23"
-        },
-        "taxInfo": {
-            "pan": "12193232i3"
-        }
-    },
-    "addresses": [{
-        "id": "1",
-        "addressType": "home",
-        "addressLabel": " home addess",
-        "country": "India",
-        "contactDetail": {
-            "areaCode": "033",
-            "contactPersonName": "ContactPersonName",
-            "phoneNumber": "5749494188",
-            "isdCode": "+91"
-        },
-        "gpsCoordinates": null,
-        "cityTown": "kolkata",
-        "district": null,
-        "uniqueTownCode": null,
-        "isPrimary": null,
-        "pinCode": "675454",
-        "state": "Maharsshtra",
-        "addressLine": "address line",
-        "landmark": "Landmark",
-        "house": "Flat no 2300",
-        "createdDate": null,
-        "modifiedDate": null
-    }],
-    "profilePictureURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Mumbai_skyline_BWSL.jpg/280px-Mumbai_skyline_BWSL.jpg",
-    "consent": {},
-    "specialStatus": {
-        "isHandleWithCare": "true",
-        "isVIP": "true"
-    },
-    "brandData": {
-        "brandActivationStatus": "Inactive",
-        "createdDate": "2020-07-03 17:01:48",
-        "modifiedDate": "2020-07-07 10:01:38",
-        "consent": {
-            "consentType": "Explicit",
-            "programTnC": false,
-            "marketingCommunication": {
-                "sms": false,
-                "call": false,
-                "email": false,
-                "pushNotification": false,
-                "mail": false,
-                "dndFlag": true
-            }
-        }
-    },
-    "status": {
-        "message": "SUCCESS",
-        "code": "200"
-    },
-    "objectId": null,
-    "existingCustomer": "Y",
-    "nationality": "Canadian",
-    "referredBy": null,
-    "referralCode": "2Y4TN7MD5",
-    "createdDate": "2020-07-03 17:01:48",
-    "modifiedDate": "2020-07-07 10:01:38"
-}
-
-```
-
-
-
-If customer not found then you'll get below resposne
+Customer not found then you'll get below resposne
 ```
 {
     "id": null,
@@ -464,8 +329,157 @@ If customer not found then you'll get below resposne
 
 ```
 
-[More information](https://dvdevportal.tatadigital.com/api-details#api=croma-pos&operation=fetchcustomerpos)
+##### 1.2.2  Step 2 : Generate OTP
 
+Call Generate OTP with Mobile Number
+[Generate OTP](https://dvdevportal.tatadigital.com/api-details#api=croma-pos&operation=generateotppos)
+
+```
+Headers:
+client_id: ‘CLIENT-ID’
+client_secret: ‘CLIENT-SECRET’
+
+Request: POST
+https://dapi.tatadigital.com/api/v1/pos/generateotp
+
+Body
+{
+	"countryCode":"+91",
+	"mobileNumber":"7400104946",
+	"programId":"tcp",
+	"event":"enrollment_OTP"
+}
+
+```
+
+You'll get the below resposne
+
+```
+{
+    "id": "0f7b2caa-8c89-416d-909a-760f3a24d41e",
+    "programId": "102",
+    "event": "ihcl_enrolment_OTP",
+    "mobileNumber": "7400104946",
+    "otp": "543364",
+    "expireyTime": 1606378456403,
+    "createdDate": "2020-11-26T08:12:16.403+0000",
+    "countryCode": "+91",
+    "validate": false,
+    "status": {
+        "message": "Success",
+        "code": "201"
+    }
+}
+```
+
+
+##### 1.2.3  Step 3 : Validate OTP
+
+Call Validate OTP with Mobile Number
+[Generate OTP](https://dvdevportal.tatadigital.com/api-details#api=croma-pos&operation=validateotppos)
+
+```
+Headers:
+client_id: ‘CLIENT-ID’
+client_secret: ‘CLIENT-SECRET’
+store_id: ‘STORE-ID’
+
+Request: POST
+https://dapi.tatadigital.com/api/v1/pos/validateotp/fetchcustomer
+
+Body
+{
+	"refId": "0f7b2caa-8c89-416d-909a-760f3a24d41e",
+	"otp": "543364",
+	"loyalCustomer": "Y",
+	"programTnC": false,
+	"appTnC": true,
+	"marketingCommunication": false,
+	"consentType": "Implicit"
+}
+```
+
+You'll get the below resposne
+
+```
+{
+    "id": "fbd4722c-7290-4418-b366-8b0b85a2583d",
+    "customerHash": "d9dd4964cfc83d0394ec65dbc2e7de71",
+    "nameDetails": null,
+    "dob": null,
+    "primaryMobile": {
+        "isdCode": "+91",
+        "phoneNumber": "7400104946"
+    },
+    "primaryEmailId": null,
+    "gender": null,
+    "activationFlag": "Active",
+    "phoneVerified": "true",
+    "emailVerified": "false",
+    "maritalStatus": null,
+    "maritalInfo": null,
+    "loyalCustomer": "N",
+    "brandLoyal": true,
+    "conflict": "false",
+    "tataFlag": null,
+    "batchEnrollment": "false",
+    "mothersMaidenName": null,
+    "alternateNumbers": null,
+    "alternateEmails": null,
+    "companyInfo": null,
+    "language": null,
+    "identificationDetail": null,
+    "addresses": null,
+    "profilePictureURL": null,
+    "consent": {
+        "consentType": "Implicit",
+        "programTnC": false,
+        "privacyPolicyAccepted": true,
+        "appTnC": true,
+        "marketingCommunication": {
+            "sms": false,
+            "call": false,
+            "email": false,
+            "pushNotification": false,
+            "mail": false,
+            "dndFlag": true
+        }
+    },
+    "specialStatus": null,
+    "brandData": {
+        "brandActivationStatus": "Active",
+        "brandLoyal": true,
+        "createdDate": "2020-11-26 08:13:48",
+        "consent": {
+            "consentType": "Implicit",
+            "programTnC": false,
+            "marketingCommunication": {
+                "sms": false,
+                "call": false,
+                "email": false,
+                "pushNotification": false,
+                "mail": false,
+                "dndFlag": true
+            }
+        }
+    },
+    "status": {
+        "message": "SUCCESS",
+        "code": "201"
+    },
+    "nationality": null,
+    "referredBy": null,
+    "referralCode": "VOYP5PUHS",
+    "createdDate": "2020-11-26 08:13:48",
+    "modifiedDate": null,
+    "programId": "102",
+    "loyaltyInfo": {
+        "createdId": 474331123,
+        "warnings": [],
+        "sideEffects": []
+    }
+}
+```
 
 
 ### Loylaty
