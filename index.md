@@ -376,7 +376,7 @@ You'll get the below resposne
 ##### 1.2.3  Step 3 : Validate OTP
 
 Call Validate OTP with Mobile Number
-[Generate OTP](https://dvdevportal.tatadigital.com/api-details#api=croma-pos&operation=validateotppos)
+[Validate OTP](https://dvdevportal.tatadigital.com/api-details#api=croma-pos&operation=validateotppos)
 
 ```
 Headers:
@@ -479,8 +479,148 @@ You'll get the below resposne
         "sideEffects": []
     }
 }
+
 ```
 
+##### 1.2.4  Step 4 : Update Profile
+
+Once OTP is validated and you'll get he cutomerHash you can update the other customer profile like First Name, Last Name, email and other profile infomratiomn as per brand requirment
+
+Update profle with customerHash
+[Update Profile](https://dvdevportal.tatadigital.com/api-details#api=croma-pos&operation=updateprofilepos)
+
+```
+Headers:
+client_id: ‘CLIENT-ID’
+client_secret: ‘CLIENT-SECRET’
+store_id: ‘STORE-ID’
+
+Request: PUT
+https://dvdevportal.tatadigital.com/api-details#api=croma-pos&operation=updateprofilepos
+
+Body
+{
+    "customerHash": "49f0ddcb9e611a9aa36b6a44ec56933b",
+    "nameDetails": {
+        "salutation": "Mr/Mrs/Miss/Dr/Ms/Prof",
+        "firstName": "Rick",
+        "middleName": "Anderson",
+        "lastName": "Roy"
+    },
+    "loyalCustomer": "Y",
+    "primaryEmailId": "tcp@tdl.com",
+    "activationFlag": "Active",
+    "dob": "2020-02-02",
+    "gender": "Male/Female/Transgender/I’d rather not say",
+    "maritalStatus": "Married/Single/I’d rather not say",
+    "maritalInfo": {
+        "anniversaryDate": "2020-12-31",
+        "spouseDetails": {
+            "spouseName": "Ritika Karan",
+            "spouseDOB": "2020-02-02"
+        }
+    },
+    "mothersMaidenName": "Susama",
+    "alternateNumbers": [{
+        "type": "Office",
+        "label": "Home address",
+        "isdCode": "+91",
+        "areaCode": "022",
+        "phoneNumber": "5749494058"
+    }],
+    "alternateEmails": [{
+        "type": "Personal",
+        "emailId": "dcgnfk@dfjkfh.com"
+    }],
+    "companyInfo": {
+        "companyName": "TDL",
+        "employeeNumber": "dfg41394",
+        "occupation": "service",
+        "designation": "dfjhf"
+    },
+    "language": {
+        "primary": "English1",
+        "secondary": "Hindi"
+    },
+    "identificationDetail": {
+        "passportDetail": {
+            "passport": "vavchcav",
+            "passportIDIssueDate": "2020-12-31",
+            "passportIDExpiryDate": "2020-12-31",
+            "passportIDIssuePlace": "Kolkata"
+        },
+        "licenseDetail": {
+            "licenseNumber": "9878465313132",
+            "licenseIDIssuePlace": "Kolkata",
+            "licnseIDIssueDate": "2020-12-31"
+        },
+        "taxInfo": {
+            "pan": "12193232i3"
+        }
+    },
+    "addresses": [{
+            "id": null,
+            "addressType": "home",
+            "addressLabel": " home addess",
+            "country": "India",
+            "contactDetail": {
+                "areaCode": "033",
+                "contactPersonName": "ContactPersonName",
+                "phoneNumber": "5749494188",
+                "isdCode": "+91"
+            },
+            "cityTown": "kolkata",
+            "district": "kolkata",
+            "uniqueTownCode": "800436",
+            "isPrimary": "false",
+            "pinCode": "675454",
+            "state": "Maharsshtra",
+            "addressLine": "address line",
+            "landmark": "Landmark",
+            "house": "Flat no 2300"
+        },
+        {
+            "id": "5b413b57-487d-4d2c-b4e8-560083760d6d",
+            "addressType": "home",
+            "addressLabel": " home addess",
+            "country": "India",
+            "contactDetail": {
+                "areaCode": "033",
+                "contactPersonName": "ContactPersonName",
+                "phoneNumber": "5749494188",
+                "isdCode": "+91"
+            },
+            "cityTown": "kolkata",
+            "district": "kolkata",
+            "uniqueTownCode": "800436",
+            "isPrimary": "false",
+            "pinCode": "675454",
+            "state": "Maharsshtra",
+            "addressLine": "address line",
+            "landmark": "Landmark",
+            "house": "Flat no 2301"
+        }
+    ],
+    "profilePictureURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Mumbai_skyline_BWSL.jpg/280px-Mumbai_skyline_BWSL.jpg",
+    "specialStatus": {
+        "isHandleWithCare": "true",
+        "isVIP": "true"
+    },
+    "nationality": "Indian"
+}
+```
+
+Resposne
+```
+{
+    "tcpNumber": "string",
+    "customerHash": "string",
+    "status": {
+        "message": "string",
+        "code": "string"
+    }
+}
+```
 
 ### Loylaty
 
