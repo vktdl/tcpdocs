@@ -269,18 +269,25 @@ Steps to enroll the customer through offline channels:
 
 First call Fetch Customer API to check if customer is alreay a member or not
 
+
 ```
-POST https://dapi.tatadigital.com/api/v1/pos/fetchcustomer
+Headers:
+client_id: ‘CLIENT-ID’
+client_secret: ‘CLIENT-SECRET’
 
-Request headers
-client_id: <ClientId)
-Authorization: <Secret>
+Request: POST
+https://dapi.tatadigital.com/api/v1/pos/fetchcustomer
 
-Request body
+Body
 {
     "mobileNumber": "8756870765",
     "countryCode": "91"
 }
+
+```
+
+If customer found then you'll get the his/her profile details
+```
 
 Resposne
 {
@@ -413,15 +420,51 @@ Resposne
 }
 
 ```
-Please refer the blow URL to get more infomration about this API:
-https://dvdevportal.tatadigital.com/api-details#api=croma-pos&operation=fetchcustomerpos
 
 
 
+If customer not found then you'll get below resposne
+```
+{
+    "id": null,
+    "customerHash": null,
+    "nameDetails": null,
+    "dob": null,
+    "primaryMobile": null,
+    "primaryEmailId": null,
+    "gender": null,
+    "activationFlag": null,
+    "maritalStatus": null,
+    "maritalInfo": null,
+    "conflict": null,
+    "tataFlag": null,
+    "batchEnrollment": null,
+    "mothersMaidenName": null,
+    "alternateNumbers": null,
+    "alternateEmails": null,
+    "companyInfo": null,
+    "language": null,
+    "identificationDetail": null,
+    "addresses": null,
+    "profilePictureURL": null,
+    "consent": null,
+    "specialStatus": null,
+    "brandData": null,
+    "status": {
+        "message": "No record found",
+        "code": "404"
+    },
+    "existingCustomer": "N",
+    "nationality": null,
+    "referredBy": null,
+    "referralCode": null,
+    "createdDate": null,
+    "modifiedDate": null
+}
 
+```
 
-
-
+[More information](https://dvdevportal.tatadigital.com/api-details#api=croma-pos&operation=fetchcustomerpos)
 
 
 
