@@ -624,6 +624,100 @@ Resposne
 
 ### Loylaty
 
+#### 1 Fetch Customer Loyalty
+
+To get the customer loylaty details like Current Point, Promised Points, Tier, Tier Expiry, etc.
+
+
+Loylaty deatails with customerHash
+[Loylaty deatails](https://dvdevportal.tatadigital.com/api-details#api=croma-pos&operation=fetchcustomerloyaltydetailspos)
+
+```
+Headers:
+client_id: ‘CLIENT-ID’
+client_secret: ‘CLIENT-SECRET’
+store_id: ‘STORE-ID’
+
+Request: GET
+https://dapi.tatadigital.com/api/v1/pos/{customerHash}/loyaltyDetails
+
+Body
+NA
+```
+
+Resposne
+```
+{
+    "data": [{
+        "redeemed": 0,
+        "expired": 0,
+        "returned": 0,
+        "adjusted": 0,
+        "lifetimePoints": 1654,
+        "loyaltyPoints": 1654,
+        "cumulativePurchases": 0,
+        "loyaltyId": 61705965,
+        "currentSlab": "NONE",
+        "nextSlab": "",
+        "nextSlabSerialNumber": -1,
+        "nextSlabDescription": "",
+        "slabSNo": 1,
+        "slabExpiryDate": "2112-09-11T23:59:59.0000000+05:30",
+        "programId": 1414,
+        "delayedPoints": 0,
+        "delayedReturnedPoints": 0,
+        "totalAvailablePoints": 0,
+        "totalReturnedPoints": 0,
+        "linkedPartnerPrograms": []
+    }],
+    "warnings": [],
+    "errors": []
+}
+```
+
+#### 2 Point Simulation
+
+To get the points, customer will earn based on product/products
+
+Get the point can be earned on 
+[Loylaty deatails](https://dvdevportal.tatadigital.com/api-details#api=loyaltypointsimulation&operation=points-simulation)
+
+```
+Headers:
+client_id: ‘CLIENT-ID’
+store_id: ‘STORE-ID’
+
+Request: GET
+https://dapi.tatadigital.com/api/v1/loyalty/getPoints
+
+
+Body
+{
+    "customerTier": "Tier 1",
+    "products": [{
+        "sku": "abc155"
+    }]
+}
+```
+
+Resposne
+```
+{
+    "customerId": "UAT_3",
+    "programId": 0,
+    "customerTier": "Tier 1",
+    "products": [{
+        "sku": "abc155",
+        "pointsRatio": 0,
+        "brand": {
+            "label": "Westside",
+            "name": "Westside",
+            "description": ""
+        },
+        "eligible": true
+    }]
+}
+```
 
 ### Offer Engine
 
